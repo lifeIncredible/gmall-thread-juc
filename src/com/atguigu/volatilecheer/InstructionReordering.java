@@ -22,13 +22,16 @@ public class InstructionReordering {
 
     public static void main(String[] args) {
         InstructionReordering instructionReordering = new InstructionReordering();
-         new Thread(()->{
-         instructionReordering.method01();
-                 },"A").start();
-
-          new Thread(()->{
-          instructionReordering.method02();
-                  },"B").start();
+        for (int i = 1; i <=3 ; i++) {
+            new Thread(()->{
+                instructionReordering.method01();
+            },String.valueOf(i)).start();
+        }
+       for (int i = 4; i <=7 ; i++) {
+           new Thread(()->{
+                instructionReordering.method02();
+           },String.valueOf(i)).start();
+       }
     }
 
 }

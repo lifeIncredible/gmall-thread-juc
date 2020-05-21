@@ -23,7 +23,6 @@ public class BlockingQueueDemo {
 
 
 
-
         /**
          * 3.阻塞:
          *      插入: put(e)  移出: take()

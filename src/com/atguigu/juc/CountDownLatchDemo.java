@@ -9,6 +9,8 @@ import java.util.concurrent.CountDownLatch;
  *
  *  public class CountDownLatch extends Object
  *
+ *  一种同步帮助，允许一个或多个线程等待，直到在其他线程中执行的一组操作完成。
+ *
  */
 public class CountDownLatchDemo {
     public static void main(String[] args) throws InterruptedException {

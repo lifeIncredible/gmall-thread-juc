@@ -4,14 +4,14 @@ import java.util.concurrent.TimeUnit;
 
 class Phone
 {
-    public  static synchronized  void sendEmail() throws InterruptedException
-{
-    TimeUnit.SECONDS.sleep(3);
-    System.out.println("******sendEmail");
-}
+    public static synchronized  void sendEmail() throws InterruptedException //phone Class
+    {
+        TimeUnit.SECONDS.sleep(3);
+        System.out.println("******sendEmail");
+    }
 
 
-    public  synchronized  void sendSMS()
+    public  synchronized  void sendSMS() //this01对象
     {
         System.out.println("******sendSMS");
     }
@@ -45,8 +45,8 @@ class Phone
  *  6.  两个静态同步方法，2部手机,一部手机请问先打印邮件还是短息  sendEmail
         5-6笔记：
                 都换成静态同步方法后，情况又变化
-                若是普通方法， new  this，  具体的一部手机，所有的普通同步方法用的都是同一把锁——实例对象本身
-                若是静态同步方法，static Class 唯一的一个模板
+                若是普通方法,new  this，  具体的一部手机，所有的普通同步方法用的都是同一把锁——实例对象本身
+                若是静态同步方法，static    Class 唯一的一个模板
                 synchronized是实现同步的基础:java中的每一个对象都可以作为锁
                 具体表现为以下3种形式:
                         对于普通同步方法，琐是当前实例对象。它等同于  对于同步方法块，锁是synchonized括号里配置的对象
@@ -83,10 +83,11 @@ public class Lock8 {
         Thread.sleep(100);
 
         new Thread(()->{
-            //phone.sendSMS();
-            phone2.sendSMS();
+             // phone.sendSMS();
+             phone2.sendSMS();
             //phone.hello();
         },"B").start();
+
 
     }
 

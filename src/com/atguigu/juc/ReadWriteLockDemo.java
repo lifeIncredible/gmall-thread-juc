@@ -6,12 +6,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 资源类  读  写
+ * volatile  1.保证可见性 2.不保证原子性 3.禁止指令重排序、
  */
 class MyCache {
     private volatile Map<String, String> map = new HashMap<>();
     private ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
 
-
+     //最终版本加读写锁
     public void put(String key, String value) {
         rwl.writeLock().lock();
         try {
@@ -39,7 +40,8 @@ class MyCache {
         }
     }
 }
-    /*  加lock 锁
+    /*  第二种版本加lock 锁
+
     private Lock lock = new ReentrantLock();
     public  void put(String key,String value)
     {
@@ -74,8 +76,8 @@ class MyCache {
 
 /**
  * 官方API 不允许质疑！！！！！！！！！
- * 读写锁(Interface ReadWriteLock)
- *          实现类:    java.util.concurrent.locks.ReentrantReadWriteLock
+ * 读写锁接口： ReadWriteLock
+ *          实现类:    java.util.concurrent.locks.ReentrantReadWriteLock       Class ReentrantReadWriteLock
  *              final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
  *              rwl.readLock().lock();  rwl.readLock().unlock();
  *              rwl.writeLock().lock(); rwl.writeLock().unlock();
@@ -90,13 +92,15 @@ class MyCache {
  *      写-写 不能共存
  *------------------------------------------------------------------------------------------
     演示：
-        1  不加锁  乱写error，并发读可以。
-        2  加lock锁  写数据一致，但是并发读下降(牺牲了并发性，保证了安全性,一读一写可以用lock)
-        3  加ReentrantReadWriteLock  写唯一，读并发高性能
+        1. 不加锁  写入错乱，并发读可以。
+        2.  加lock锁  写数据一致，但是并发读下降(牺牲了并发性，保证了安全性,一读一写可以用lock)
+        3.  加ReentrantReadWriteLock  写唯一，读并发高性能
  */
 public class ReadWriteLockDemo {
     public static void main(String[] args) {
+
         MyCache myCache = new MyCache();
+
         for (int i = 1; i <= 10; i++) {
             final int tempI = i;
             new Thread(() -> {
@@ -112,6 +116,7 @@ public class ReadWriteLockDemo {
                 myCache.get(tempI + "");
             }, String.valueOf(i)).start();
         }
+
     }
 
 }

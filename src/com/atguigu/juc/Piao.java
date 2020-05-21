@@ -28,7 +28,7 @@ import java.util.concurrent.locks.ReentrantLock;
         }
     }
 
-   /* public synchronized  void sale(){
+   /*public synchronized  void sale1(){
         if (ticket > 0){
             //.currentThread获得当前线程对象引用,getName()获取当前线程名字
             System.out.println(Thread.currentThread().getName()+"卖了一张票，剩余票数:"+(--ticket));

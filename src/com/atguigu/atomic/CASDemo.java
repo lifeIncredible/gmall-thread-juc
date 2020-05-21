@@ -16,11 +16,13 @@ public class CASDemo {
         //main do thing ...
 
         //compareAndSet(期望值，更新值)  在我修改之前期望主物理内存的值跟我期望的一样，如果一样结果为true并把主物理内存的值修改掉
-        System.out.println(atomicInteger.compareAndSet(5, 2019));
-        System.out.println(atomicInteger);
+        System.out.println(atomicInteger.compareAndSet(5, 2019)+"\t current data:"+ atomicInteger.get());
+
 
         //因为主物理内存的值已经被修改为2019，期望值变了，所以修改失败false，需要重新获得最新值才能修改
-        System.out.println(atomicInteger.compareAndSet(5, 1024));
-        System.out.println(atomicInteger);
+        System.out.println(atomicInteger.compareAndSet(5, 1024)+"\t current data:"+ atomicInteger.get());
+
+        atomicInteger.getAndIncrement();
+
     }
 }

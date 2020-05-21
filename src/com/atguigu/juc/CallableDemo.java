@@ -6,10 +6,10 @@ import java.util.concurrent.FutureTask;
 
 class  MyThread2 implements Runnable{
 
-    @Override
-    public void run() {
+        @Override
+        public void run() {
 
-    }
+        }
 }
 
 class MyThread implements Callable<Integer>{
@@ -47,8 +47,9 @@ public class CallableDemo {
 
         FutureTask futureTask = new FutureTask(new MyThread());
 
-         new Thread(futureTask,"A").start();
+        new Thread(futureTask,"A").start();
 
+        //get方法获取Callable接口处理结果的返回值
         System.out.println(futureTask.get());
     }
 }
