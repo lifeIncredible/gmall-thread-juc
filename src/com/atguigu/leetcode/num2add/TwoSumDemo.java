@@ -1,4 +1,4 @@
-package com.atguigu.leetcode;
+package com.atguigu.leetcode.num2add;
 
 /**
  * @author mcRae.su start
